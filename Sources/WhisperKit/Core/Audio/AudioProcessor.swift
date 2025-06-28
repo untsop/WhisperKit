@@ -116,6 +116,11 @@ public protocol AudioProcessing {
         startAt startIndex: Int,
         toLength frameLength: Int
     ) -> (any AudioProcessorOutputType)?
+    
+    /// Processes an external audio buffer and adds it to the audio samples.
+    /// This allows mixing external audio sources with the microphone input.
+    /// - Parameter buffer: Array of Float audio samples to process (should be 16kHz mono)
+    func processBuffer(_ buffer: [Float])
 }
 
 /// Overrideable default methods for AudioProcessing

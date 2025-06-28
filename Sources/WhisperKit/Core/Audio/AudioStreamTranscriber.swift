@@ -95,6 +95,13 @@ public actor AudioStreamTranscriber {
         Logging.info("Realtime transcription has ended")
     }
 
+    /// Appends an external audio buffer to the real-time transcription stream.
+    /// This allows mixing other audio sources with the microphone input for transcription.
+    /// - Parameter buffer: Array of Float audio samples to append (should be 16kHz mono)
+    public func appendAudioBuffer(_ buffer: [Float]) {
+        audioProcessor.processBuffer(buffer)
+    }
+
     private func realtimeLoop() async {
         while state.isRecording {
             do {
